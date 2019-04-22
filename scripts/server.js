@@ -1,10 +1,31 @@
+/*
+ * @LastEditors: Mark
+ * @Description: In User Settings Edit
+ * @Author: Mark
+ * @Date: 2019-04-22 17:27:56
+ * @LastEditTime: 2019-04-22 18:44:59
+ */
 const static = require('koa-static');
 const Koa = require('koa');
 const app = new Koa();
 const path = require('path');
 const fs = require('fs');
 
-const staticPath = '../build';
+const { readFileList, readFileCont, writeFile } = require('./utils/local_root');
+
+const staticPath = '../www';
+
+// creatFile();
+// async function creatFile() {
+//   //读取文件列表
+//   fs.readdir(path.join(__dirname, staticPath), (err, files) => {
+//     if (err) {
+//       console.error('error:\n' + err);
+//       return;
+//     }
+//     console.log(files);
+//   });
+// }
 
 app.use(static(path.join(__dirname, staticPath)));
 
