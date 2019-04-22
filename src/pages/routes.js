@@ -3,7 +3,7 @@
  * @Description: In User Settings Edit
  * @Author: Mark
  * @Date: 2019-04-08 11:33:38
- * @LastEditTime: 2019-04-17 10:38:48
+ * @LastEditTime: 2019-04-22 17:36:40
  */
 import _import from '@utils/_import';
 
@@ -20,26 +20,6 @@ const routes = [
   {
     path: '/demo',
     name: 'Demo',
-    description: '这里是演示页面',
-    title: '演示',
-    component: _import(basePath + '/Demo'),
-    children: {
-      routes: _import(basePath + '/Demo/routes'),
-    },
-  },
-  {
-    path: '/demo_test1',
-    name: 'demo_test1',
-    description: '这里是演示页面',
-    title: '演示',
-    component: _import(basePath + '/Demo'),
-    children: {
-      routes: _import(basePath + '/Demo/routes'),
-    },
-  },
-  {
-    path: '/demo_test2',
-    name: 'demo_test2',
     description: '这里是演示页面',
     title: '演示',
     component: _import(basePath + '/Demo'),
