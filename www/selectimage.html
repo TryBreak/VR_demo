@@ -1,0 +1,157 @@
+<!--
+ * @LastEditors: Mark
+ * @Description: In User Settings Edit
+ * @Author: Mark
+ * @Date: 2019-04-22 18:21:12
+ * @LastEditTime: 2019-04-23 14:14:20
+ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>UtoVR-全景图模式</title>
+    <meta name="Description" content="UtoVR全景播放器" />
+    <!--引入引导js 动态下载播放器-->
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="./player/UtoVRPlayerGuide.js"
+    ></script>
+    <style type="text/css">
+      html body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      #panoDesk {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        overflow: hidden;
+      }
+    </style>
+
+    <style>
+      .mybtn {
+        width: 100px;
+        height: 30px;
+        display: inline-block;
+        background-color: rgb(91, 183, 91);
+        border: 1px solid rgb(91, 183, 91);
+        border-radius: 3px;
+        color: white;
+        font-size: 14px;
+        font-family: 微软雅黑;
+        cursor: pointer;
+        text-align: center;
+        vertical-align: center;
+        box-shadow: 0px 0px 1px 1px rgb(91, 160, 91);
+      }
+      .mybtn:hover {
+        background-color: rgb(91, 160, 91);
+        border-color: rgb(91, 160, 91);
+        color: white;
+        text-decoration: none;
+      }
+      #div4bm {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="panoDesk"></div>
+
+    <div id="div4bm">
+      <!--input[button] 触发 file click事件-->
+      <input
+        type="button"
+        value="更换图片"
+        id="mybutton"
+        class="mybtn"
+        onclick="Id('file').click();"
+      />
+      <!--file 隐藏起来 触发onchange事件-->
+      <input
+        type="file"
+        name="file"
+        accept="image/png,image/jpg,image/jpeg"
+        id="file"
+        onchange="changeToop();"
+        style="display:none;"
+      />
+    </div>
+  </body>
+
+  <script language="javascript" type="text/javascript">
+    /*播放器参数配置*/
+    var params = {
+      container: document.getElementById('panoDesk'),
+      name: 'SceneViewer',
+      scenesArr: [
+        //todo:注意修改视频路径，需要保证播放页面与视频属于同一域名下
+        {
+          sceneId: 'v1',
+          sceneName: '赛车',
+          sceneFilePath: './image/2048-1.jpg',
+          sceneType: 'Image',
+          initFov: 100,
+        },
+      ],
+    };
+    /*初始化开始*/
+  </script>
+</html>
+<script>
+  //图片选择器
+  function Id(id) {
+    return document.getElementById(id);
+  }
+
+  function changeToop() {
+    var file = Id('file');
+    if (file.value == '') {
+      //设置默认图片
+    } else {
+      preImg('file', 'myimg');
+    }
+  }
+
+  function getFileUrl(fileId) {
+    var url;
+    var file = Id(fileId);
+    var agent = navigator.userAgent;
+    if (agent.indexOf('MSIE') >= 1) {
+      url = file.value;
+    } else if (agent.indexOf('Firefox') > 0) {
+      url = window.URL.createObjectURL(file.files.item(0));
+    } else if (agent.indexOf('Chrome') > 0) {
+      url = window.URL.createObjectURL(file.files.item(0));
+    }
+    return url;
+  }
+  //读取图片后预览
+  function preImg(fileId, imgId) {
+    var src = getFileUrl(fileId);
+    params.scenesArr[0].sceneFilePath = src;
+    // console.log(params);
+    // console.log(src);
+    initLoad(params);
+  }
+  initLoad(params);
+</script>
