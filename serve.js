@@ -1,3 +1,10 @@
+/*
+ * @LastEditors: Mark
+ * @Description: In User Settings Edit
+ * @Author: Mark
+ * @Date: 2019-04-23 14:24:26
+ * @LastEditTime: 2019-04-23 14:32:28
+ */
 const Koa = require("koa");
 const path = require("path");
 const static = require("koa-static");
@@ -11,10 +18,11 @@ app.use(static(path.join(__dirname, staticPath)));
 app.use(async ctx => {
   ctx.body = "<h1>hello world</h1>";
 });
+const port = 3222;
 
-app.listen(2333, "0.0.0.0", () => {
-  console.log("server is starting at port 2333");
-  console.log("服务已经启动,请在浏览器中输入 http://localhost:2333 ");
+app.listen(port, "0.0.0.0", () => {
+  console.log(`server is starting at port ${port}`);
+  console.log(`服务已经启动,请在浏览器中输入 http://localhost:${port} `);
 });
 
 /*
