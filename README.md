@@ -24,7 +24,4 @@
 
 - 执行命令 node serve.js
 
-- 在该目录下新建`www`文件夹, http://localhost:2333 则直接指向该文件夹,比如:
-
-        http://localhost:2333/demo.html
 
